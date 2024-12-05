@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-Br" method="GET" action="{{ url_for('consultar_projeto', proj_id=projeto['id']) }}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ projeto["nome"] }} - ProjIF</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/logo_pfi.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/tela_consultar_proj.css">
+</head>
+
+<body>
+    <div class="menu" style="background-color: #105039">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #105039">
+            <img src="../static/img/logo_pfi.png" alt="logo_pfi" style="width: 50px; height: 50px">
+            <a class="navbar-brand" href="{{ url_for('acesso') }}">ProjIF</a>
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado" style="background-color: #105039">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('projetos') }}">Projetos</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('atualizacoes') }}">Atualizações</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('sobre') }}">Sobre</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    <a href="{{ url_for('perfil') }}">{{ nomear_coordenador() }}</a>
+                </span>
+            </div>
+        </nav>
+    </div>
+        
+    <div class="container" style="margin-left: 5%;">
+        <div class="proj">
+            <h4 style="margin-top: 2%;">{{ projeto["nome"] }}</h4> <!--Nome do projeto-->
+            <p id="link"><i><a href="{{ projeto['url_material'] }}" target="_blank">{{ projeto["url_material"] }}</a></i></p> <!--material do projeto-->
+            <p>{{ projeto["tipo"] }}<br> <!--Tipo do projeto-->
+            {{ projeto["coordenador"] }}<br> <!--Coordenador do projeto-->
+            {{ projeto["situacao"] }}</p> <!--Situacao-->
+            
+            {% if projeto["situacao"] == 'Ativo' %}
+            <br>
+            <p style="font-size: 16px;">
+                {{ projeto["local"] }}<br>
+                {{ projeto ["dia_semana"] }} - {{ projeto["horario"][:5] }}</p>
+            
+            {% endif %}
+
+            <h5>Sobre o Projeto</h5>
+            <p style="font-size: 15px">{{ projeto["resumo"] }}</p> <!--Resumo-->
+
+            <hr style="background-color: black; margin-bottom: 3%;">
+        </div>
+
+        <h4 style="margin-top: 5%; margin-bottom: 3%;">Atualizações</h4>
+
+        <div class="post"> 
+            {% for post in projeto["posts"] %}
+            <div class="conteudo" style="width: 100%;">
+                <img class="imagem" src="{{ post['imagem'] }}" alt="Imagem da publicação">
+                <div class="textos" style="margin-left: 2%;">
+                    <p>{{ post["data"] }}</p>
+                    <p style="color: black">{{ post["texto"] }}</p>
+                </div>
+
+                {% if coo_bl %}
+                <div class="menu-container" style="left: 40%;">
+                    <button class="bt_menu_opcoes">⋮</button>
+                    <div class="menu-dropdown" style="right: 0; top: 20px;">
+                        <a href="{{ url_for('excluir_postagem', proj_id=projeto['id'], post_id=post['id']) }}"
+                            onclick="return confirm('Deseja excluir esta postagem?')" style="color: black; padding: 5px;">Excluir</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <hr style="background-color: #949494; margin-bottom: 3%;">
+            {% endfor %}
+
+        </div>
+
+        {% if coo_bl %}
+        <div class="mais">
+            <a href="{{ url_for('efetuar_postagem', proj_id=projeto['id']) }}">
+            <button class="botao-mais">+</button>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    
+    <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
+
+

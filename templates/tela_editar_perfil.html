@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar perfil - ProjIF</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/logo_pfi.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/tela_editar_projetos.css"> <!--config. do css p pag de edicao de proj é a mesma-->
+</head>
+<body>
+    <div class="menu" style="background-color: #105039">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #105039">
+            <img src="../static/img/logo_pfi.png" alt="logo_pfi" style="width: 50px; height: 50px">
+            <a class="navbar-brand" href="{{ url_for('acesso') }}">ProjIF</a>
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado" style="background-color: #105039">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('projetos') }}">Projetos</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('atualizacoes') }}">Atualizações</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('sobre') }}">Sobre</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    <a href="{{ url_for('perfil') }}">{{ nomear_coordenador() }}</a>
+                </span>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h4 style="margin-top: 5%;">Editar perfil</h4><br><br>
+        <form method="POST" action="{{ url_for('editar_perfil') }}" style="text-align: center;">
+            <input type="text" name="nome" value="{{ conta[1] }}" style="border: 0px; border-radius:5px; margin-bottom: 3px" maxlength="44" required>
+            <br>
+            <input type="text" name="telefone" value="{{ conta[3] }}" style="border: 0px; border-radius:5px; margin-bottom: 3px" maxlength="15">
+            <br>
+            <label>Data de Nascimento:</label><br>
+            <input type="number" name="dia_nasc" value="{{ data_bd[2] }}" style="width: 50px; border: 0px; border-radius:5px; margin-bottom: 3px">
+            <input type="number" name="mes_nasc" value="{{ data_bd[1] }}" style="width: 50px; border: 0px; border-radius:5px; margin-bottom: 3px">
+            <input type="number" name="ano_nasc" value="{{ data_bd[0] }}" style="width: 90px; border: 0px; border-radius:5px; margin-bottom: 3px">
+            <br>
+            <button type="submit" style="background-color: #105039; color: #e3e3e3; border: 0px; border-radius: 5px; margin-top: 10px; margin-left: 10%">
+                Editar Perfil
+            </button>
+        </form>
+    </div>
+
+    <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

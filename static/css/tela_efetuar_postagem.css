@@ -1,0 +1,33 @@
+body, html {
+    background-color: #e3e3e3;
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    background-color: #e3e3e3;
+}
+
+select {
+    color: #5c5e9a;
+}
+
+select:valid {
+    color: black;
+}
+
+input {
+    border: 0px;
+    border-radius:5px;
+    margin-top: 3px;
+}
+
+#descricao {
+    width: 30%;
+    height: 150px;
+}
+
+.formulario {
+    margin-top: 2%;
+    margin-left: 5%;
+}

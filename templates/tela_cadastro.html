@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Realizar Cadastro - ProjIF</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/logo_pfi.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/tela_cadastro.css">
+    <!-- <script src="{{ url_for('static', filename='../static/js/tela_cadastro.js') }}" defer></script> -->
+</head>
+
+<body>
+    <div class="menu" style="background-color: #105039">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #105039">
+            <img src="../static/img/logo_pfi.png" alt="logo_pfi" style="width: 50px; height: 50px">
+            <a class="navbar-brand" href="{{ url_for('acesso') }}">ProjIF</a>
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado" style="background-color: #105039">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('projetos') }}">Projetos</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('atualizacoes') }}">Atualizações</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('sobre') }}">Sobre</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    
+    <div class="container">
+        <div id="logo">
+            <img src="../static/img/logo_pfi.png" alt="logo_pfi" style="width: 400px; height: 400px">
+        </div>
+        <div id="cad">
+            <h4>Cadastre-se para gerenciar seus projetos</h4>
+            <form style="text-align: center;" method="POST" action="{{ url_for('cadastro') }}">
+                <input type="text" name="nome" placeholder="Nome completo" style="border: 0px; border-radius:5px; margin-bottom: 3px" maxlength="44" required>
+                <br>
+                <input type="text" name="telefone" placeholder="Telefone" style="border: 0px; border-radius:5px; margin-bottom: 3px" maxlength="15">
+                <br>
+                <label>Data de Nascimento:</label><br>
+                <input type="number" name="dia_nascimento" placeholder="Dia" style="width: 50px; border: 0px; border-radius:5px; margin-bottom: 3px">
+                <input type="number" name="mes_nascimento" placeholder="Mês" style="width: 50px; border: 0px; border-radius:5px; margin-bottom: 3px">
+                <input type="number" name="ano_nascimento" placeholder="Ano" style="width: 90px; border: 0px; border-radius:5px; margin-bottom: 3px">
+                <br>
+                <input type="text" name="email" placeholder="E-mail" style="border: 0px; border-radius:5px; margin-bottom: 3px" maxlength="44" required>
+                <br>
+                <input type="password" name="senha" placeholder="Senha" style="border: 0px; border-radius:5px; margin-bottom: 3px" maxlength="20" required>
+                <br>
+                <input type="password" name="confirmar_senha" placeholder="Confirmar senha" style="border: 0px; border-radius:5px; margin-bottom: 5px" maxlength="20" required>
+                <br>
+                <button type="submit" style="background-color: #105039; color: #e3e3e3; border: 0px; border-radius: 5px; margin-left: 45%">
+                    Realizar cadastro
+                </button>
+            </form>
+            <br>
+            <a style="font-size:12px; margin-left: 45%">Já possui conta?</a>
+            <a href="{{ url_for('acesso') }}" style="font-size:12px;">Clique aqui!</a>
+        </div>
+    </div>
+
+    <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Efetuar Postagem - ProjIF</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/logo_pfi.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/tela_efetuar_postagem.css">
+</head>
+
+<body>
+    <div class="menu" style="background-color: #105039">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #105039">
+            <img src="../static/img/logo_pfi.png" alt="logo_pfi" style="width: 50px; height: 50px">
+            <a class="navbar-brand" href="{{ url_for('acesso') }}">ProjIF</a>
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado" style="background-color: #105039">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('projetos') }}">Projetos</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('atualizacoes') }}">Atualizações</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('sobre') }}">Sobre</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    <a href="{{ url_for('perfil') }}">{{ nomear_coordenador() }}</a>
+                </span>
+            </div>
+        </nav>
+    </div>
+
+        <h4 style="margin-left: 4%; margin-top: 2%;">Faça uma postagem</h4>
+        <form class="formulario" method="POST" action="{{ url_for('efetuar_postagem') }}" enctype="multipart/form-data">
+            <label for="proj" style="margin-top: 5px">Projeto</label>
+            <select id="proj" name="proj" style="width: 100px; border: 0px; border-radius:5px" required>
+            {% if proj_padrao %}
+                <option value="{{ proj_padrao[0] }}" selected hidden>{{ proj_padrao[1] }}</option>
+            {% else %}
+                <option value="" selected hidden>-Selecione-</option>
+            {% endif %}
+    
+            <!-- Listagem dos projetos -->
+            {% for proj in projs %}
+                <option value="{{ proj[0] }}">{{ proj[1] }}</option>
+            {% endfor %}
+            </select>
+            <br><br>
+            <label for="descricao" style="margin-top: 5px">Descrição</label><br>
+            <textarea id="descricao" name="descricao" type="text" style="border: 0px; border-radius:5px; margin-bottom: 3px" placeholder="Diga alguma coisa..." maxlength="499"></textarea>
+            <br><br>
+            <label for="img" style="margin-top: 5px">Adicione uma imagem:</label>
+            <input id="img" type="file" name="img" accept="image/*">
+            <br>
+            <button type="submit" style="background-color: #105039; color: #e3e3e3; border: 0px; border-radius: 5px; margin-top: 4%;">
+                Publicar
+            </button>
+            <br>
+        </form>
+        
+</body>
+</html>

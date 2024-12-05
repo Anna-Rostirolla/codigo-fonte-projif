@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="pt-Br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Meus projetos - ProjIF</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/logo_pfi.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/tela_perfil_visualizar_proj.css">
+</head>
+
+<body>
+    <div class="menu" style="background-color: #105039">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #105039">
+            <img src="../static/img/logo_pfi.png" alt="logo_pfi" style="width: 50px; height: 50px">
+            <a class="navbar-brand" href="{{ url_for('acesso') }}">ProjIF</a>
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado" style="background-color: #105039">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('projetos') }}">Projetos</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('atualizacoes') }}">Atualizações</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('sobre') }}">Sobre</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    <a href="{{ url_for('perfil') }}"><b>{{ nomear_coordenador() }}</b></a>
+                </span>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container" style="margin-left: 0%;" method="GET" action="{{ url_for('perfil') }}">
+        <div class="info">
+            <div class="botoes_op" style="width: 100%; text-align: left;">
+                <form class="sair_form" action="{{ url_for('sair') }}" method="POST" onsubmit="return confirm('Deseja mesmo sair?')">
+                    <button class="sair_btn" type="submit" style="width: 100%; height: 100%;"></button>
+                </form>
+                <a href="{{ url_for('editar_perfil') }}"><button class="editar_btn"></button></a>
+            </div>
+            <h5 class="elem-info" style="padding-top: 26%">{{ coordenador[1] }}</h5>
+            <p class="elem-info"><i>{{ coordenador[2] }}</i><br><br> <!-- email do coordenador -->
+            {{ coordenador[3] }}<br> <!-- telefone do coordenador -->
+            {{ idade }} anos<br> <!--idade do coordenador-->
+            {{ qtd_projs }} projeto(s)</p>  <!--quantidade de projetos q possui-->
+        </div>
+
+        <div class="projetos" style="margin-left: 5%;">
+            <h4 style="margin-top: 5%; margin-bottom: 3%;">Meus Projetos</h4>
+            
+            {% for proj in projs %}
+            <div class="proj">
+                <div class="menu-container">
+                    <button class="bt_menu_opcoes">⋮</button>
+                    <div class="menu-dropdown">
+                        <a href="{{ url_for('editar_projeto', proj_id=proj[0]) }}">Editar</a>
+                        <a href="{{ url_for('excluir_projeto', proj_id=proj[0]) }}" 
+                        onclick="return confirm('Deseja mesmo excluir este projeto?\nAs postagens feitas por ele também serão perdidas.')">Excluir</a>
+                    </div>
+                </div>
+                <a href="{{ url_for('consultar_projeto', proj_id=proj[0]) }}" style="text-decoration: none; color: black;">
+                    <h5 style="margin-top: 2%;">{{ proj[1] }}</h5>
+                    <p>{{ proj[10] }}</p> <!--tipo do proj-->
+                    <p>{{ proj[4] }}</p> <!--situacao-->
+                </a>
+            </div>
+            <hr style="background-color: black; margin-bottom: 3%;">
+            {% endfor %}
+
+        </div>
+        
+        <div class="mais">
+            <a href="{{ url_for('cadastro_projeto') }}">
+            <button class="botao-mais">+</button>
+            </a>
+        </div>    
+    </div>
+
+    <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+

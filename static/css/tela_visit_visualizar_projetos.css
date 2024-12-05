@@ -1,0 +1,15 @@
+p {
+    color: #949494;
+    margin-top: 0%;
+    padding: 0%;
+    font-size: 17px;
+}
+
+.proj {
+    margin: 0.5% 0;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+  }

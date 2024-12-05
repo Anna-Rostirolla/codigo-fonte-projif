@@ -1,0 +1,19 @@
+.conteudo {
+    display: flex;
+    align-items: flex-start;
+
+}
+
+.imagem {
+    height: 280px;
+    width: 373px; 
+}
+
+.texto {
+    flex: 1;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}

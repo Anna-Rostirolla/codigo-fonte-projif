@@ -1,0 +1,58 @@
+.tipo {
+    margin: 0.5% 0;
+}
+
+h5:hover {
+    color: black;
+    text-decoration: none;
+}
+
+/* Estilo para o botão ⋮ */
+.bt_menu_opcoes {
+    background: #ffffff;
+    border: none;
+    font-size: 18px;
+    padding: 5px;
+    color: black;
+    cursor: pointer;
+}
+
+/* Container do menu dropdown */
+.menu-container {
+    position: relative; /* Posicionamento relativo para alinhar o dropdown ao botão */
+    display: inline-block; /* Garante que o tamanho do container seja ajustado ao botão */
+}
+
+/* Estilo do menu-dropdown */
+.menu-dropdown {
+    display: none; /* Escondido por padrão */
+    position: absolute;
+    right: 0; /* Alinha à direita do container pai */
+    top: 35px; /* Ajusta a distância do botão ⋮ */
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 10; /* Garante que fique acima de outros elementos */
+    padding: 10px; /* Espaçamento interno */
+    min-width: 150px; /* Largura mínima */
+}
+
+/* Estilo dos links dentro do dropdown */
+.menu-dropdown a {
+    display: block; /* Cada link ocupa uma linha */
+    padding: 5px 10px;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.menu-dropdown a:hover {
+    background-color: #c5c5c5;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+/* Exibir o menu-dropdown ao passar o mouse */
+.menu-container:hover .menu-dropdown {
+    display: block;
+}

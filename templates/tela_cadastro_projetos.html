@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastre seu projeto - ProjIF</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/logo_pfi.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/tela_cadastro_projetos.css">
+</head>
+
+<body>
+    <div class="menu" style="background-color: #105039">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #105039">
+            <img src="../static/img/logo_pfi.png" alt="logo_pfi" style="width: 50px; height: 50px">
+            <a class="navbar-brand" href="{{ url_for('acesso') }}">ProjIF</a>
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado" style="background-color: #105039">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('projetos') }}">Projetos</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('atualizacoes') }}">Atualizações</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('sobre') }}">Sobre</a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    <a href="{{ url_for('perfil') }}">{{ nomear_coordenador() }}</a>
+                </span>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h4 style="margin-top: 5%;">Cadastre um novo projeto</h4>
+        <form  class="formulario"  method="POST" action="{{ url_for('cadastro_projeto') }}">
+            <label for="nome" style="margin-top: 2%">Nome do projeto:*</label>
+            <input type="text" name="nome" style="width: 500px; border: 0px; border-radius:5px" maxlength="59" required>
+            <br>
+            <label for="tipo" style="margin-top: 1,5%">Tipo de projeto:*</label>
+            <select id="tipo" name="tipo" style="width: 100px; border: 0px; border-radius:5px" required>
+                <option value="" disabled selected hidden>-Selecione-</option>
+                {% for tipo in tipos %} <!--Pega as categorias do BD-->
+                    <option value="{{ tipo[0] }}">{{ tipo[1] }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="url-material" style="margin-top: 5px">Material produzido:</label>
+            <input type="text" name="url-material" placeholder="Adicione um link" maxlength="299" style="width: 200px">
+            <br>
+            <label for="local" style="margin-top: 5px">Local:</label>
+            <input type="text" name="local" placeholder="Informe onde o projeto ocorre..." maxlength="44" style="width: 250px">
+            <br>
+            <label for="dia_semana" style="margin-top: 5px">Dia da semana</label>
+            <select id="dia_semana" name="dia_semana" style="width: 100px; border: 0px; border-radius:5px">
+                <option value="" disabled selected hidden>-Selecione-</option>
+                <option value="seg">Segunda-feira</option>
+                <option value="ter">Terça-feira</option>
+                <option value="qua">Quarta-feira</option>
+                <option value="qui">Quinta-feira</option>
+                <option value="sex">Sexta-feira</option>
+            </select>
+            <label for="hora" style="margin-top: 5px">Horário:</label>
+            <input type="time" name="hora" style="width: 100px">
+            <br>
+            <label for="resumo" style="margin-top: 5px">Resumo</label><br>
+            <textarea name="resumo" type="text" style="border: 0px; border-radius:5px; margin-bottom: 3px" placeholder="Comente um pouco sobre o projeto..." maxlength="700" required></textarea>
+            <br>
+
+            <button
+                style="background-color: #105039; color: #e3e3e3; border: 0px; border-radius: 5px; margin-top: 4%;">
+                Cadastrar projeto
+            </button>
+            <br>
+            
+        </form>
+    </div>
+
+    <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tipos de projetos - ProjIF</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/logo_pfi.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/tela_adm_tipos.css">
+</head>
+
+<body>
+    <div class="menu" style="background-color: #105039">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #105039">
+            <img src="../static/img/logo_pfi.png" alt="logo_pfi" style="width: 50px; height: 50px">
+            <a class="navbar-brand" href="{{ url_for('acesso') }}">ProjIF</a>
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado" style="background-color: #105039">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('projetos') }}">Projetos</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('atualizacoes') }}">Atualizações</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('sobre') }}">Sobre</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container" style="margin-left: 5%;" method="GET" action="{{ url_for('tipos') }}">
+        <h4 style="margin-top: 5%; margin-bottom: 3%;">Tipos de projetos</h4>
+
+        {% for tipo in tipos %}
+        <div id="{{ tipo[0] }}">
+            <div class="menu-container" style="left: 20%;">
+                <button class="bt_menu_opcoes">⋮</button>
+                <div class="menu-dropdown">
+                    <!-- Formulário para renomear -->
+                    <form method="POST" action="{{ url_for('renomear_tipo') }}">
+                        <input type="hidden" name="id" value="{{ tipo[0] }}">
+                        <input type="text" name="novo_nome" placeholder="Novo nome" required>
+                        <button type="submit">Salvar</button>
+                    </form>
+                    <a onclick="return confirm('Deseja confirmar a exclusão do tipo?')">Excluir</a>
+                </div>
+            </div>
+            <h5 style="margin-top: 2%; color: black;">{{ tipo[1] }}</h5>
+            <hr style="background-color: black; margin-bottom: 3%;">
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function renomearTipo() {
+            const novo_nome = prompt("Qual é o novo nome do tipo?");
+
+            if (texto) {
+                document.getElementById("resultado").innerText = texto;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

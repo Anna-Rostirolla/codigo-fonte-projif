@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sobre - ProjIF</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../static/img/logo_pfi.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/tela_consultar_proj.css">
+
+    <style>
+        #cadastro:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="menu" style="background-color: #105039">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #105039">
+            <img src="../static/img/logo_pfi.png" alt="logo_pfi" style="width: 50px; height: 50px">
+            <a class="navbar-brand" href="{{ url_for('acesso') }}">ProjIF</a>
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado" style="background-color: #105039">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('projetos') }}">Projetos</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('atualizacoes') }}">Atualizações</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url_for('sobre') }}"><b>Sobre</b></a>
+                    </li>
+                </ul>
+                <span class="navbar-text">
+                    <a href="{{ url_for('perfil') }}">{{ nomear_coordenador() }}</a>
+                </span>
+            </div>
+        </nav>
+    </div>
+        
+    <div class="container" style="margin-left: 5%; margin-top: 2%; margin-right: 7%; margin-bottom: 3%; text-align: justify;">
+        <h3>ProjIF</h3>
+        <p style="color: black; font-size: 18px;">O ProjIF é uma ferramenta dedicada a dar mais visibilidade para as atividades complementares curriculares realizadas no 
+            IFPR - Campus Quedas do Iguaçu durante horários a parte das aulas formais, seu foco é estabelecido especificamente para atividades 
+            realizadas periodicamente — chamados popularmente de projetos — nas dependências do campus. Com sua instituição no campus, 
+            espera-se que cada vez mais a comunidade tanto acadêmica quanto regional desenvolva interesse pelos projetos realizados.
+            <br>Além disso, o ProjIF busca contribuir, mesmo que um pouco, para auxiliar coordenadores de projetos a gerenciarem seus projetos.</p>
+            <hr>
+            <p style="color: black; font-size: 18px;">Por enquanto, o ProjIF funciona voltando-se mais para coordenadores de projetos, que podem se autenticar, cadastrar projetos e fazerem postagens 
+            para cada um de seus projetos, enquanto a comunidade geral pode visualizar os projetos existentes e as postagens de projetos feitas, sem que dispunham 
+            de opções de inserção de dados.</p>
+
+            <p style="color: black;"><a id="cadastro" href="{{ url_for('cadastro') }}" style="color: #105039;">Clique Aqui</a> caso seja um coordenador de projetos e deseje se cadastrar!</p>
+        <br>
+        <div style="width: 100%; text-align: center; font-size: small;">
+            <p><i>"Ninguém educa ninguém, ninguém educa a si mesmo, os homens se educam entre si, mediatizados pelo mundo."</i>
+            <br><b>~ Paulo Freire</b></p>
+        </div>
+        <br><br><br>
+        <p style="font-size: 12px; margin-bottom: 0%;">Este sistema foi desenvolvido como o projeto final interdisciplinar de Anna Julia Rostirolla, sob orientação de Danilo Giacobo.</p>
+
+    </div>
+    
+    <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+
