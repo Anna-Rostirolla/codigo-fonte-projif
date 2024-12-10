@@ -1,0 +1,41 @@
+CREATE DATABASE projifdb;
+
+USE projifdb;
+
+CREATE TABLE coordenadores (
+    id_coordenador INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nome VARCHAR(45) NOT NULL,
+    email VARCHAR(45) NOT NULL UNIQUE,
+    senha VARCHAR(200) NOT NULL,
+    telefone VARCHAR(16),
+    data_nascimento DATE
+);
+
+CREATE TABLE tipos (
+    id_tipo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nome VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE projetos (
+    id_projeto INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nome VARCHAR(60) NOT NULL,
+    resumo VARCHAR(701) NOT NULL,
+    situacao ENUM("Ativo", "Inativo", "Finalizado") NOT NULL,
+    local VARCHAR(45),
+    dia_semana ENUM("seg", "ter", "qua", "qui", "sex"),
+    horario TIME,
+    url_material VARCHAR(300),
+    id_coordenador INT,
+    id_tipo INT,
+    FOREIGN KEY (id_coordenador) REFERENCES coordenadores(id_coordenador),
+    FOREIGN KEY (id_tipo) REFERENCES tipos(id_tipo)
+);
+
+CREATE TABLE postagens (
+    id_postagem INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    data_publicacao DATETIME NOT NULL,
+    imagem MEDIUMBLOB NOT NULL,
+    texto VARCHAR(500),
+    id_projeto INT,
+    FOREIGN KEY (id_projeto) REFERENCES projetos(id_projeto)
+);
